@@ -27,22 +27,23 @@ public class Main extends Thread
     ArrayList< ArrayList< JCheckBox > > checksS = new ArrayList<>() ;
     ArrayList< ArrayList< JCheckBox > > checksS1 = new ArrayList<>() ;
 
-    int [] n0 = {0,1,2,3,6,9,12,12,15,18,21,24,27,30,31,32,33};
-    int [] n1 = {1,6,7,13,19,25,30,31,32};
-    int [] n2 = {0,1,2,3,4,10,12,13,14,15,16,18,24,30,31,32,33,34};
-    int [] n3 = {0,1,2,3,9,12,13,14,15,21,27,30,31,32,33};
-    int [] n4 = {0,3,6,9,12,13,14,15,21,27,33};
-    int [] n5 = {1,2,3,4,7,13,14,15,16,22,28,31,32,33,34};
-    int [] n6 = {1,2,3,4,7,13,14,15,16,19,22,25,28,31,32,33,34};
-    int [] n7 = {0,1,2,3,9,15,21,27,33};
-    int [] n8 = {0,1,2,3,6,9,12,13,14,15,18,19,20,21,24,27,30,31,32,33};
-    int [] n9 = {0,1,2,3,6,9,12,13,14,15,21,27,33};
+    int [] n0 = {1,2,3,8,10,15,17,22,24,29,30,31};
+    int [] n1 = {2,8,9,16,23,29,30,31};
+    int [] n2 = {1,2,3,10,15,16,17,22,29,30,31};
+    int [] n3 = {1,2,3,10,15,16,17,24,29,30,31};
+    int [] n4 = {1,3,8,10,15,16,17,24,31};
+    int [] n5 = {1,2,3,8,15,16,17,24,29,30,31};
+    int [] n6 = {1,2,3,8,15,16,17,22,24,29,30,31};
+    int [] n7 = {1,2,3,10,16,17,18,24,31};
+    int [] n8 = {1,2,3,8,10,15,16,17,22,24,29,30,31};
+    int [] n9 = {1,2,3,8,10,15,16,17,24,29,30,31};
+    int [] dots = {5,6,12,13,26,27,33,34};
 
     int [] [] nums = {n0,n1,n2,n3,n4,n5,n6,n7,n8,n9};
 
     public void run()
     {
-        /*while (true)
+       while (true)
         {
             try
             {
@@ -61,9 +62,11 @@ public class Main extends Thread
             dotsFalse(checksS);
             dotsFalse(checksS1);
 
-            getHour();
-        }*/
+            dotsTrue(checksH1, dots);
+            dotsTrue(checksM1, dots);
 
+            getHour();
+        }
     }
 
     public Main ()
@@ -74,22 +77,22 @@ public class Main extends Thread
         window.setLayout(new GridLayout(0,6));
         window.setSize(700,180);
 
-        hours.setLayout(new GridLayout(6,6));
+        hours.setLayout(new GridLayout(5,5));
         checksH = createClock(hours);
 
-        hours1.setLayout(new GridLayout(6,6));
+        hours1.setLayout(new GridLayout(5,5));
         checksH1 = createClock(hours1);
 
-        min.setLayout(new GridLayout(6,6));
+        min.setLayout(new GridLayout(5,5));
         checksM = createClock(min);
 
-        min1.setLayout(new GridLayout(6,6));
+        min1.setLayout(new GridLayout(5,5));
         checksM1 = createClock(min1);
 
-        seconds.setLayout(new GridLayout(6,6));
+        seconds.setLayout(new GridLayout(5,5));
         checksS = createClock(seconds);
 
-        seconds1.setLayout(new GridLayout(6,6));
+        seconds1.setLayout(new GridLayout(5,5));
         checksS1 = createClock(seconds1);
 
         window.add(hours);
@@ -100,8 +103,6 @@ public class Main extends Thread
 
         window.add(seconds);
         window.add(seconds1);
-
-        //getHour();
 
         window.setVisible(true);
     }
@@ -119,10 +120,10 @@ public class Main extends Thread
         for (int i =0; i < 1; i++)
         {
             checkboxes.add( new ArrayList<>() ) ;
-            for (int x = 0; x < 36; x++)
+            for (int x = 0; x < 35; x++)
             {
-                JCheckBox cb = new JCheckBox("x" +x);
-                cb.setVisible(true);
+                JCheckBox cb = new JCheckBox();
+                cb.setVisible(false);
                 checkboxes.get(i).add(cb);
 
                 content.add(cb);
@@ -137,7 +138,7 @@ public class Main extends Thread
 
         for (int i = 0; i < 1; i++)
         {
-            for (int x = 0; x < 20; x++)
+            for (int x = 0; x < 35; x++)
             {
                 checks.get(0).get(x).setSelected(false);
                 checks.get(0).get(x).setVisible(false);
@@ -147,6 +148,19 @@ public class Main extends Thread
     }
 
     private void change(ArrayList< ArrayList< JCheckBox > > checks, int [] num)
+    {
+
+        for (int i = 0; i < 1; i++)
+        {
+            for (int x = 0; x < num.length; x++)
+            {
+                checks.get(0).get(num[x]).setSelected(true);
+                checks.get(0).get(num[x]).setVisible(true);
+            }
+        }
+    }
+
+    private void dotsTrue(ArrayList< ArrayList< JCheckBox > > checks, int [] num)
     {
 
         for (int i = 0; i < 1; i++)
